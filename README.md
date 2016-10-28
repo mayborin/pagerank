@@ -14,7 +14,7 @@ MapReduce(EMR).
 PageRank is a function that assigns a real number to each page in the Web. The intent is that
 the higher the PageRank of a page, the more important it is. The equation is as follows:
 
-![N|Solid](https://github.com/mayborin/pagerank)
+![N|Solid](https://raw.githubusercontent.com/mayborin/pagerank/master/page.png))
 
 (1)
 Where d = 0.85, p 1 ,p 2 ,...,p N are the pages under consideration, M(p i ) is the set of pages that link
