@@ -68,17 +68,17 @@ public class extract {
 	    private Text result = new Text();
 	    
 	    public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
-	    	  boolean isredlink=true;
+	    	      boolean isredlink=true;
 		      StringBuilder re=new StringBuilder();
 		      for (Text val : values) {
-		    	  	String tmp=val.toString();
+		    	    String tmp=val.toString();
 		    	    if(tmp.equals(mark)) {isredlink=false;}
 			    re.append(tmp);
 			    re.append(" ");
 		      }
 		      if(!isredlink){
-		    	  	  result.set(re.toString());
-			      context.write(key, result);
+		    	    result.set(re.toString());
+			    context.write(key, result);
 		      }
 	    }
 	  }
