@@ -70,7 +70,7 @@ c   b d
 ...
 ```
 
-to check whether the outlinks are redlink or not, we can pass the pagetile to the outlinks 
+to check whether the outlinks are redlink or not, we can pass the pagetitle to the outlinks 
 ```
 title     outlinks
 a         b c d e f g h
