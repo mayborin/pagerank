@@ -3,10 +3,10 @@
 * from @see (extract.java). 
 * The output file includes:
 *		 _______
-*	 			|_______num_nodes -- contains the number of nodes N (page titles) calculated from input graph.
+*	 			|_______num_nodes --- contains the number of nodes N (page titles) calculated from input graph.
 *				|_______iter1.out --- contains result after 1st iteration of pagerank score calculation.
 *				|_______iter8.out --- contains result after 8th iteration of pagerank score calculation.
-*				|_______temp/ -- contains intermediate files that will be ignored by TA.
+*				|_______temp/     --- contains intermediate files
 * 
 * @author Luoming Liu
 * @param input_path  : the path to the adjacent graph files extracted from wiki data set
@@ -38,7 +38,7 @@ public class pagerank {
 
 
 	public static class CountMapper extends Mapper<Object, Text, Text, IntWritable>{
-		private final static IntWritable one = new IntWritable(1);
+	    private final static IntWritable one = new IntWritable(1);
 	    private Text word = new Text("word");
 
 	    public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
@@ -168,7 +168,7 @@ public class pagerank {
 		}
 	}
 	public static void calN(String input_path, String output_path) throws Exception{
-		Configuration conf = new Configuration();
+	    Configuration conf = new Configuration();
 	    Job job = Job.getInstance(conf, "job CalN");
 	    job.setJarByClass(pagerank.class);
 	    job.setMapperClass(CountMapper.class);
@@ -185,13 +185,13 @@ public class pagerank {
 	    FileSystem destFs=destPath.getFileSystem(conf);
 	    FileUtil.copyMerge(srcFs, srcPath, destFs, destPath, true, conf, null);
 	    Scanner in=new Scanner(new File(output_path+"/num_nodes"));
-		n=in.nextInt();
-		in.close();
+	    n=in.nextInt();
+            in.close();
 	}
 	public static void iterate(String input_path, String output_path) throws Exception{
 		//Initial iterate, only do for once
 		do{
-			Configuration conf = new Configuration();
+		    Configuration conf = new Configuration();
 		    Job job = Job.getInstance(conf, "job Iterate");
 		    job.setJarByClass(pagerank.class);
 		    job.setMapperClass(IniMapper.class);
@@ -204,7 +204,7 @@ public class pagerank {
 		}while(false);
 	    
 		for(int i=2;i<=8;i++){
-			Configuration conf = new Configuration();
+		    Configuration conf = new Configuration();
 		    Job job = Job.getInstance(conf, "job Iterate");
 		    job.setJarByClass(pagerank.class);
 		    job.setMapperClass(InterMapper.class);
@@ -218,7 +218,7 @@ public class pagerank {
 	}
 
 	public static void sort(String in_path, String out_path) throws Exception{
-		Configuration conf = new Configuration();
+	    Configuration conf = new Configuration();
 	    Job job = Job.getInstance(conf, "job Sort");
 	    job.setJarByClass(pagerank.class);
 	    job.setMapperClass(sortMapper.class);
